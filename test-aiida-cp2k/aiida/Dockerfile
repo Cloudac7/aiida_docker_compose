@@ -30,11 +30,14 @@ USER root
 RUN pip install ase
 USER aiida
 WORKDIR /home/aiida/code/
+### Here we setup the CP2K plugin for AiiDA
+## Get the 'aiida-cp2k' tagged version with git
 RUN git clone https://github.com/cp2k/aiida-cp2k.git && \
-    cd ./aiida-cp2k && \
-    git checkout v0.1 && \
-    cp -rv ./aiida_cp2k/calculations ../aiida_core/aiida/orm/calculation/job/cp2k && \
-    cp -rv ./aiida_cp2k/parsers      ../aiida_core/aiida/parsers/plugins/cp2k
+    cd aiida-cp2k && \
+    git checkout v0.7 && \
+    pip install --user -e . && \
+    /home/aiida/.local/bin/reentry scan && \
+    cd ..
 
 # Important to end as user root (to run the init script)
 USER root

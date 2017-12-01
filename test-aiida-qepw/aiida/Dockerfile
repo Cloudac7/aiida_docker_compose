@@ -23,7 +23,7 @@ RUN git clone https://github.com/aiidateam/aiida-quantumespresso.git && \
     cd aiida-quantumespresso && \
     git checkout v1.0.1 && \
     pip install --user -e . && \
-    reentry scan && \
+    /home/aiida/.local/bin/reentry scan && \
     cd ..
 
 # Make  sure all things created have the right permissions
