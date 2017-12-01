@@ -1,6 +1,6 @@
 #TODO: specify a specific version here
 
-FROM aiidateam/aiida_core_base:0.9.1
+FROM aiidateam/aiida_core_base:0.10.0
 MAINTAINER AiiDA Team <info@aiida.net>
 
 # Make directory (if COPY in the line below creates it automatically, it then will
@@ -14,6 +14,17 @@ COPY ./scripts/ /home/aiida/.dockerscripts/
 # user, so it works with proper permissions when I mount 
 # an external named volume
 RUN mkdir ~/.aiida/ && mkdir ~/.ssh/keys
+
+USER aiida
+WORKDIR /home/aiida/code
+
+## Get the 'aiida-qe' tagged version with git
+RUN git clone https://github.com/aiidateam/aiida-quantumespresso.git && \
+    cd aiida-quantumespresso && \
+    git checkout v1.0.1 && \
+    pip install --user -e . && \
+    /home/aiida/.local/bin/reentry scan && \
+    cd ..
 
 # Make  sure all things created have the right permissions
 USER root
