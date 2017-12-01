@@ -1,6 +1,6 @@
 #TODO: specify a specific version here
 
-FROM aiidateam/aiida_core_base:0.10.0
+FROM aiidateam/aiida_core_base:0.9.0
 MAINTAINER AiiDA Team <info@aiida.net>
 
 # Make directory (if COPY in the line below creates it automatically, it then will
@@ -25,19 +25,17 @@ RUN chown -R aiida:aiida /home/aiida/.dockerscripts && \
 # expose https port (for rest? or maybe instead expose jupyter?)
 #EXPOSE 443
 
-### Here we setup the CP2K plugin for AiiDA
-USER root
-RUN pip install ase
+### Here we setup the Siesta plugin for AiiDA
 USER aiida
 WORKDIR /home/aiida/code/
-### Here we setup the CP2K plugin for AiiDA
-## Get the 'aiida-cp2k' tagged version with git
-RUN git clone https://github.com/cp2k/aiida-cp2k.git && \
-    cd aiida-cp2k && \
-    git checkout v0.7 && \
-    pip install --user -e . && \
-    /home/aiida/.local/bin/reentry scan && \
-    cd ..
+RUN mkdir siesta && cd siesta && \
+    git clone https://github.com/albgar/aiida_core.git && \
+    cd aiida_core/ && \
+    git checkout siesta-0.7 && \
+    cp -r aiida/orm/calculation/job/siesta/ ../../aiida_core/aiida/orm/calculation/job/siesta/ && \
+    cp -r aiida/parsers/plugins/siesta/ ../../aiida_core/aiida/parsers/plugins/siesta/ && \
+    cp -r aiida/orm/data/psf.py ../../aiida_core/aiida/orm/data/psf.py && \
+    cp -r aiida/cmdline/commands/data.py ../../aiida_core/aiida/cmdline/commands/data.py
 
 # Important to end as user root (to run the init script)
 USER root
