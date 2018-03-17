@@ -1,6 +1,4 @@
-#TODO: specify a specific version here
-
-FROM aiidateam/aiida_core_base:0.11.1
+FROM aiidateam/aiida_core_base:0.11.2
 MAINTAINER AiiDA Team <info@aiida.net>
 
 # Make directory (if COPY in the line below creates it automatically, it then will
