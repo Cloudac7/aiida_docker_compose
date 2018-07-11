@@ -19,16 +19,16 @@ services:
   # torquessh-quantumespresso is an example of 
   # how you can extend the base image
   torquessh:
-     build: torquessh-doubler/
+     build: ./torquessh-doubler
      privileged: true
      env_file:
        - compose-init/env/torque.env
 
   aiida:
-     build: aiida/
+     build: ./aiida
      volumes:
-        - aiidalogs:/home/aiida/.aiida/
-        - aiidarepo:/home/aiida/.aiida_repo/
+        - aiidalogs:/home/aiida/.aiida
+        - aiidarepo:/home/aiida/.aiida_repo
         - ./compose-init/sshkeys/sharedfolder:/home/aiida/.ssh/keys:ro
      depends_on:
         - db
