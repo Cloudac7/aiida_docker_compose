@@ -12,7 +12,7 @@ services:
   db:
      image: postgres:9.5
      volumes:
-       - dbdata:/var/lib/postgres/data
+       - dbdata:/var/lib/postgresql/data
      env_file:
        - compose-init/env/postgres.env
 
