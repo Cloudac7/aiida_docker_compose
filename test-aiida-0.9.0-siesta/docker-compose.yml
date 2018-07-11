@@ -28,7 +28,7 @@ services:
      build: aiida/
      volumes:
         - aiidalogs:/home/aiida/.aiida/
-        - aiidarepo:/home/aiida/.aiida-repo/
+        - aiidarepo:/home/aiida/.aiida_repo/
         - ./compose-init/sshkeys/sharedfolder:/home/aiida/.ssh/keys:ro
      depends_on:
         - db
