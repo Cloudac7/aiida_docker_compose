@@ -13,7 +13,7 @@ COPY ./scripts/ /home/aiida/.dockerscripts/
 # Prepare the folders - the next command will assign it to the correct
 # user, so it works with proper permissions when I mount 
 # an external named volume
-RUN mkdir ~/.aiida/ && mkdir ~/.ssh/keys
+RUN mkdir ~/.aiida/ && mkdir ~/.ssh/keys && mkdir ~/.aiida_repo
 
 USER aiida
 WORKDIR /home/aiida/code
@@ -30,6 +30,7 @@ RUN git clone https://github.com/aiidateam/aiida-quantumespresso.git && \
 USER root
 RUN chown -R aiida:aiida /home/aiida/.dockerscripts && \
     chown -R aiida:aiida /home/aiida/.aiida && \
+    chown -R aiida:aiida /home/aiida/.aiida_repo && \
     chown -R aiida:aiida /home/aiida/.ssh 
 
 # TO CHECK: also because we need to start the web service and install Apache
