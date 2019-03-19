@@ -14,10 +14,10 @@ then
 fi
 
 # Wait for ssh on torquessh
-~/.dockerscripts/core/wait-for-it.sh torquessh:22 -t 0
+# ~/.dockerscripts/core/wait-for-it.sh torquessh:22 -t 0
 
 # Store the host in known_hosts, if not already there
-ssh-keygen -F torquessh > /dev/null 2>&1 || ssh-keyscan torquessh >> ~/.ssh/known_hosts
+# ssh-keygen -F torquessh > /dev/null 2>&1 || ssh-keyscan torquessh >> ~/.ssh/known_hosts
 
 # Wait for postgres to be up
 
@@ -25,7 +25,7 @@ if [ "$AIIDA_DBPORT" == "" ]
 then
     AIIDA_PORT=5432
 fi
-~/.dockerscripts/core/wait-for-it.sh db:$AIIDA_PORT -t 0
+# ~/.dockerscripts/core/wait-for-it.sh db:$AIIDA_PORT -t 0
 
 echo "which verdi"
 which verdi
@@ -62,7 +62,7 @@ else
 
     verdi setup --non-interactive \
 	--backend=$AIIDA_BACKEND \
-	--email="ai4chemgroup@gmail.com" \
+	--email="aiida@localhost" \
 	--db_host=db \
 	--db_port=$AIIDA_PORT \
 	--db_name=$AIIDA_DB \
