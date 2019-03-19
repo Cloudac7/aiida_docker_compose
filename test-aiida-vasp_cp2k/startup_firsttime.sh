@@ -29,6 +29,6 @@ docker-compose exec --user aiida aiida /bin/bash -l -c "/home/aiida/.dockerscrip
 ### PLUGIN-SPECIFIC SECTION
 
 # Setup also the code
-docker-compose exec --user aiida aiida /bin/bash -l -c "cat /home/aiida/.dockerscripts/plugin/code-setup-input.txt | verdi code setup"
+#docker-compose exec --user aiida aiida /bin/bash -l -c "cat /home/aiida/.dockerscripts/plugin/code-setup-input.txt | verdi code setup"
 
 

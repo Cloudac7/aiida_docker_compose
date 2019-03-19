@@ -1,11 +1,10 @@
-torquessh
-torquessh
-
+# Name
+# Full hostname
+# Desciption
 True
-ssh
-torque
-/scratch/{username}/aiida_run
+# ssh, local
+lsf
+/data/home/{username}/aiida_run
 mpirun -np {tot_num_mpiprocs}
-1
 
 
