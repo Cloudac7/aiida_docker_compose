@@ -11,6 +11,7 @@ volumes:
 services:
   db:
      image: postgres:9.5
+     container_name: aiida_db
      volumes:
        - dbdata:/var/lib/postgresql/data
      env_file:
@@ -26,6 +27,7 @@ services:
 
   aiida:
      build: ./aiida
+     container_name: aiida_core
      volumes:
         - aiidalogs:/home/aiida/.aiida
         - aiidarepo:/home/aiida/.aiida_repo
